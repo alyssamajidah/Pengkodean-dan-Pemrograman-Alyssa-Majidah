@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Persediaan Penjualan - GingerBirch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #FCE4EC; /* Light pastel pink for body background */
+            color: #333;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #D7CCC8; /* Pastel brown for the app name */
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #ddd; /* Light gray for inactive tabs */
+            color: #333;
+            margin: 0 5px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .tab-button.active {
+            background-color: #D7CCC8; /* Pastel brown for active tab */
+            color: #333;
+        }
+
+        .tab-content {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #D7CCC8; /* Pastel brown for section titles */
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #D7CCC8; /* Pastel brown for table headers */
+            color: #333;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #F8BBD0; /* Pastel pink for even rows */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff; /* White for odd rows */
+        }
+
+        .low-stock {
+            color: #e74c3c; /* Red for low stock warnings */
+        }
+
+        .total {
+            font-weight: bold;
+            background-color: #D7CCC8; /* Pastel brown for total rows */
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #D7CCC8; /* Pastel brown for buttons */
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #bcaaa4; /* Slightly darker pastel brown on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://cdn0.weddingwire.com/vendor/392840/3_2/1280/jpg/gingerbirch097_51_1048293.jpeg" alt="GingerBirch Logo">
+        <h1>GingerBirch</h1>
+        <p>Aplikasi Persediaan Penjualan</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab('update-stocks')">Update Stocks</button>
+        <button class="tab-button" onclick="openTab('inventory')">Inventory</button>
+        <button class="tab-button" onclick="openTab('sales')">Sales</button>
+    </div>
+
+    <!-- Update Stocks Tab -->
+    <div id="update-stocks" class="tab-content active">
+        <h2>Update Stocks</h2>
+        <div class="form-group">
+            <label for="product-name">Nama Produk</label>
+            <select id="product-name" name="product-name">
+                <option value="teddy-bear">Teddy Bear</option>
+                <option value="wooden-toy">Wooden Toy</option>
+                <option value="plush-doll">Plush Doll</option>
+                <option value="puzzle-set">Puzzle Set</option>
+                <option value="board-game">Board Game</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Jumlah</label>
+            <input type="number" id="quantity" name="quantity" placeholder="Masukkan jumlah stok" required>
+        </div>
+        <div class="form-group">
+            <label for="action">Aksi</label>
+            <select id="action" name="action">
+                <option value="add">Tambah Stok</option>
+                <option value="reduce">Kurangi Stok</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="button">Submit</button>
+        </div>
+
+        <h2>Log Perubahan Stok</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Nama Produk</th>
+                    <th>Aksi</th>
+                    <th>Jumlah</th>
+                    <th>Stok Setelah Perubahan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01/04/2025</td>
+                    <td>Teddy Bear</td>
+                    <td>Tambah Stok</td>
+                    <td>100</td>
+                    <td>600</td>
+                </tr>
+                <tr>
+                    <td>02/04/2025</td>
+                    <td>Wooden Toy</td>
+                    <td>Kurangi Stok</td>
+                    <td>50</td>
+                    <td>450</td>
+                </tr>
+                <tr>
+                    <td>03/04/2025</td>
+                    <td>Plush Doll</td>
+                    <td>Tambah Stok</td>
+                    <td>200</td>
+                    <td>700</td>
+                </tr>
+                <tr>
+                    <td>04/04/2025</td>
+                    <td>Puzzle Set</td>
+                    <td>Kurangi Stok</td>
+                    <td>30</td>
+                    <td>270</td>
+                </tr>
+                <tr>
+                    <td>05/04/2025</td>
+                    <td>Board Game</td>
+                    <td>Tambah Stok</td>
+                    <td>150</td>
+                    <td>550</td>
+                </tr>
+                <tr>
+                    <td>06/04/2025</td>
+                    <td>Teddy Bear</td>
+                    <td>Kurangi Stok</td>
+                    <td>20</td>
+                    <td>580</td>
+                </tr>
+                <tr>
+                    <td>07/04/2025</td>
+                    <td>Wooden Toy</td>
+                    <td>Tambah Stok</td>
+                    <td>100</td>
+                    <td>550</td>
+                </tr>
+                <tr>
+                    <td>08/04/2025</td>
+                    <td>Plush Doll</td>
+                    <td>Kurangi Stok</td>
+                    <td>50</td>
+                    <td>650</td>
+                </tr>
+                <tr>
+                    <td>09/04/2025</td>
+                    <td>Puzzle Set</td>
+                    <td>Tambah Stok</td>
+                    <td>80</td>
+                    <td>350</td>
+                </tr>
+                <tr>
+                    <td>10/04/2025</td>
+                    <td>Board Game</td>
+                    <td>Kurangi Stok</td>
+                    <td>40</td>
+                    <td>510</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Inventory Tab -->
+    <div id="inventory" class="tab-content">
+        <h2>Inventory</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Kategori</th>
+                    <th>Nama Produk</th>
+                    <th>Kode Produk</th>
+                    <th>Stok Tersedia</th>
+                    <th>Harga Satuan (Rp)</th>
+                    <th>Total Nilai (Rp)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Mainan Boneka</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Mainan Boneka</td>
+                    <td>Teddy Bear</td>
+                    <td>TB001</td>
+                    <td>580</td>
+                    <td>50,000</td>
+                    <td>29,000,000</td>
+                </tr>
+                <tr>
+                    <td>Mainan Boneka</td>
+                    <td>Plush Doll</td>
+                    <td>PD001</td>
+                    <td class="low-stock">650</td>
+                    <td>45,000</td>
+                    <td>29,250,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Total Mainan Boneka</td>
+                    <td></td>
+                    <td></td>
+                    <td>1,230</td>
+                    <td></td>
+                    <td>58,250,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Mainan Kayu</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Mainan Kayu</td>
+                    <td>Wooden Toy</td>
+                    <td>WT001</td>
+                    <td>550</td>
+                    <td>60,000</td>
+                    <td>33,000,000</td>
+                </tr>
+                <tr>
+                    <td>Mainan Kayu</td>
+                    <td>Puzzle Set</td>
+                    <td>PS001</td>
+                    <td>350</td>
+                    <td>30,000</td>
+                    <td>10,500,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Total Mainan Kayu</td>
+                    <td></td>
+                    <td></td>
+                    <td>900</td>
+                    <td></td>
+                    <td>43,500,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Permainan Papan</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Permainan Papan</td>
+                    <td>Board Game</td>
+                    <td>BG001</td>
+                    <td>510</td>
+                    <td>80,000</td>
+                    <td>40,800,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Total Permainan Papan</td>
+                    <td></td>
+                    <td></td>
+                    <td>510</td>
+                    <td></td>
+                    <td>40,800,000</td>
+                </tr>
+                <tr class="total">
+                    <td><strong>Total Keseluruhan</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td>2,640</td>
+                    <td></td>
+                    <td>142,550,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Sales Tab -->
+    <div id="sales" class="tab-content">
+        <h2>Sales</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Nama Produk</th>
+                    <th>Kode Produk</th>
+                    <th>Jumlah Terjual</th>
+                    <th>Harga Satuan (Rp)</th>
+                    <th>Total Penjualan (Rp)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01/04/2025</td>
+                    <td>Teddy Bear</td>
+                    <td>TB001</td>
+                    <td>20</td>
+                    <td>50,000</td>
+                    <td>1,000,000</td>
+                </tr>
+                <tr>
+                    <td>02/04/2025</td>
+                    <td>Wooden Toy</td>
+                    <td>WT001</td>
+                    <td>15</td>
+                    <td>60,000</td>
+                    <td>900,000</td>
+                </tr>
+                <tr>
+                    <td>03/04/2025</td>
+                    <td>Plush Doll</td>
+                    <td>PD001</td>
+                    <td>30</td>
+                    <td>45,000</td>
+                    <td>1,350,000</td>
+                </tr>
+                <tr>
+                    <td>04/04/2025</td>
+                    <td>Puzzle Set</td>
+                    <td>PS001</td>
+                    <td>25</td>
+                    <td>30,000</td>
+                    <td>750,000</td>
+                </tr>
+                <tr>
+                    <td>05/04/2025</td>
+                    <td>Board Game</td>
+                    <td>BG001</td>
+                    <td>10</td>
+                    <td>80,000</td>
+                    <td>800,000</td>
+                </tr>
+                <tr>
+                    <td>06/04/2025</td>
+                    <td>Teddy Bear</td>
+                    <td>TB001</td>
+                    <td>40</td>
+                    <td>50,000</td>
+                    <td>2,000,000</td>
+                </tr>
+                <tr>
+                    <td>07/04/2025</td>
+                    <td>Wooden Toy</td>
+                    <td>WT001</td>
+                    <td>20</td>
+                    <td>60,000</td>
+                    <td>1,200,000</td>
+                </tr>
+                <tr>
+                    <td>08/04/2025</td>
+                    <td>Plush Doll</td>
+                    <td>PD001</td>
+                    <td>15</td>
+                    <td>45,000</td>
+                    <td>675,000</td>
+                </tr>
+                <tr>
+                    <td>09/04/2025</td>
+                    <td>Puzzle Set</td>
+                    <td>PS001</td>
+                    <td>30</td>
+                    <td>30,000</td>
+                    <td>900,000</td>
+                </tr>
+                <tr>
+                    <td>10/04/2025</td>
+                    <td>Board Game</td>
+                    <td>BG001</td>
+                    <td>25</td>
+                    <td>80,000</td>
+                    <td>2,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td><strong>Total Penjualan</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td>195</td>
+                    <td></td>
+                    <td>11,575,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            // Hide all tab contents
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab content and set the button as active
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
