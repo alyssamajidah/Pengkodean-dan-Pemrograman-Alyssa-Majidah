@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Sign On (SSO) - Universitas Diponegoro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://joss.co.id/data/uploads/2024/10/Widya-Puraya-UNDIP.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: blur(5px); /* Apply blur only to the background */
+            -webkit-filter: blur(5px);
+            z-index: -1; /* Place the background behind the login container */
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1; /* Ensure the login container is above the blurred background */
+        }
+
+        .logo {
+            content: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfsrYm6QP1Rq0phClFmNnM-JLKIPrp12RhxQ&s');
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .login-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .reset-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .reset-btn:hover {
+            background-color: #c82333;
+        }
+
+        .link {
+            font-size: 14px;
+            color: #dc3545;
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .register-btn {
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .register-btn:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 12px;
+            color: #666;
+            z-index: 1; /* Ensure the footer is above the blurred background */
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div> <!-- Separate div for the blurred background -->
+    <div class="login-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfsrYm6QP1Rq0phClFmNnM-JLKIPrp12RhxQ&s" alt="Universitas Diponegoro Logo" class="logo">
+        <h2>Single Sign On (SSO)</h2>
+        <p class="subtitle">Universitas Diponegoro</p>
+        <p class="subtitle">Silahkan Masuk</p>
+
+        <form>
+            <div class="input-group">
+                <label for="username">NIM/NIP/USERNAME/e-mail OFFICIAL Undip</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <button type="submit" class="login-btn">LOGIN</button>
+            <button type="button" class="reset-btn">Reset Password</button>
+            <a href="#" class="link">Belum memiliki akun? Daftar sekarang!</a>
+            <br>
+            <a href="#" class="register-btn">Pendaftaran alumni klik disini</a>
+        </form>
+    </div>
+
+    <div class="footer">
+        © 2025 DSTI Universitas Diponegoro. All rights reserved.
+    </div>
+</body>
+</html>
