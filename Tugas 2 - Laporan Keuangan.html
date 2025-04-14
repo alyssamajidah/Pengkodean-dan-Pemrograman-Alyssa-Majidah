@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan Keuangan - Teddy Bear Co.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #FFFDE7; /* Light pastel yellow for body background */
+            color: #333;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #A3BFFA; /* Pastel blue for the company name */
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #ddd; /* Light gray for inactive tabs */
+            color: #333;
+            margin: 0 5px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .tab-button.active {
+            background-color: #A3BFFA; /* Pastel blue for active tab */
+            color: #333;
+        }
+
+        .tab-content {
+            display: none;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #A3BFFA; /* Pastel blue for section titles */
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #A3BFFA; /* Pastel blue for table headers */
+            color: #333;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #FEF9A7; /* Pastel yellow for even rows */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff; /* White for odd rows */
+        }
+
+        .negative {
+            color: #e74c3c; /* Red for negative values */
+        }
+
+        .total {
+            font-weight: bold;
+            background-color: #A3BFFA; /* Pastel blue for total rows */
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://png.pngtree.com/png-clipart/20230914/original/pngtree-cute-cartoon-teddy-bear-sticker-vector-illustration-png-image_11084967.png" alt="Teddy Bear Co. Logo">
+        <h1>Teddy Bear Co.</h1>
+        <p>Laporan Keuangan Tahun 2024</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-button active" onclick="openTab('income-statement')">Laporan Laba Rugi</button>
+        <button class="tab-button" onclick="openTab('balance-sheet')">Neraca</button>
+        <button class="tab-button" onclick="openTab('cash-flow')">Laporan Arus Kas</button>
+    </div>
+
+    <!-- Laporan Laba Rugi (Income Statement) -->
+    <div id="income-statement" class="tab-content active">
+        <h2>Laporan Laba Rugi<br>Tahun Berakhir 31 Desember 2024</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Keterangan</th>
+                    <th>Jumlah (Rp)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Pendapatan</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Penjualan Bersih</td>
+                    <td>15,000,000,000</td>
+                </tr>
+                <tr>
+                    <td>Pendapatan Jasa</td>
+                    <td>2,500,000,000</td>
+                </tr>
+                <tr>
+                    <td>Pendapatan Lain-lain</td>
+                    <td>750,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Total Pendapatan</td>
+                    <td>18,250,000,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Beban Operasional</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Beban Gaji Karyawan</td>
+                    <td>4,200,000,000</td>
+                </tr>
+                <tr>
+                    <td>Beban Sewa Kantor</td>
+                    <td>1,800,000,000</td>
+                </tr>
+                <tr>
+                    <td>Beban Utilitas</td>
+                    <td>600,000,000</td>
+                </tr>
+                <tr>
+                    <td>Beban Pemasaran</td>
+                    <td>1,200,000,000</td>
+                </tr>
+                <tr>
+                    <td>Beban Penyusutan Aset</td>
+                    <td>900,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Total Beban Operasional</td>
+                    <td>8,700,000,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Laba Kotor</strong></td>
+                    <td>9,550,000,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Beban Non-Operasional</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Beban Bunga Pinjaman</td>
+                    <td>500,000,000</td>
+                </tr>
+                <tr>
+                    <td>Kerugian Selisih Kurs</td>
+                    <td class="negative">200,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Total Beban Non-Operasional</td>
+                    <td>700,000,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Laba Sebelum Pajak</strong></td>
+                    <td>8,850,000,000</td>
+                </tr>
+                <tr>
+                    <td>Beban Pajak Penghasilan</td>
+                    <td>2,212,500,000</td>
+                </tr>
+                <tr class="total">
+                    <td><strong>Laba Bersih</strong></td>
+                    <td>6,637,500,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Neraca (Balance Sheet) -->
+    <div id="balance-sheet" class="tab-content">
+        <h2>Neraca<br>Per 31 Desember 2024</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Keterangan</th>
+                    <th>Jumlah (Rp)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Aset</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Aset Lancar</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Kas dan Setara Kas</td>
+                    <td>5,000,000,000</td>
+                </tr>
+                <tr>
+                    <td>Piutang Usaha</td>
+                    <td>3,200,000,000</td>
+                </tr>
+                <tr>
+                    <td>Persediaan Barang</td>
+                    <td>2,500,000,000</td>
+                </tr>
+                <tr>
+                    <td>Biaya Dibayar Dimuka</td>
+                    <td>300,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Total Aset Lancar</td>
+                    <td>11,000,000,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Aset Tidak Lancar</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Aset Tetap (Peralatan)</td>
+                    <td>8,000,000,000</td>
+                </tr>
+                <tr>
+                    <td>Akumulasi Penyusutan</td>
+                    <td class="negative">(2,500,000,000)</td>
+                </tr>
+                <tr>
+                    <td>Aset Tak Berwujud (Paten)</td>
+                    <td>1,200,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Total Aset Tidak Lancar</td>
+                    <td>6,700,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td><strong>Total Aset</strong></td>
+                    <td>17,700,000,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Kewajiban dan Ekuitas</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Kewajiban Lancar</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Hutang Usaha</td>
+                    <td>2,000,000,000</td>
+                </tr>
+                <tr>
+                    <td>Hutang Pajak</td>
+                    <td>500,000,000</td>
+                </tr>
+                <tr>
+                    <td>Hutang Jangka Pendek</td>
+                    <td>1,500,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Total Kewajiban Lancar</td>
+                    <td>4,000,000,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Kewajiban Jangka Panjang</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Hutang Bank</td>
+                    <td>3,000,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Total Kewajiban Jangka Panjang</td>
+                    <td>3,000,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td><strong>Total Kewajiban</strong></td>
+                    <td>7,000,000,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Ekuitas</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Modal Saham</td>
+                    <td>4,000,000,000</td>
+                </tr>
+                <tr>
+                    <td>Laba Ditahan</td>
+                    <td>6,700,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td><strong>Total Ekuitas</strong></td>
+                    <td>10,700,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td><strong>Total Kewajiban dan Ekuitas</strong></td>
+                    <td>17,700,000,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Laporan Arus Kas (Cash Flow Statement) -->
+    <div id="cash-flow" class="tab-content">
+        <h2>Laporan Arus Kas<br>Tahun Berakhir 31 Desember 2024</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Keterangan</th>
+                    <th>Jumlah (Rp)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Arus Kas dari Aktivitas Operasi</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Penerimaan dari Pelanggan</td>
+                    <td>17,500,000,000</td>
+                </tr>
+                <tr>
+                    <td>Pembayaran kepada Pemasok</td>
+                    <td class="negative">(8,000,000,000)</td>
+                </tr>
+                <tr>
+                    <td>Pembayaran Gaji Karyawan</td>
+                    <td class="negative">(4,200,000,000)</td>
+                </tr>
+                <tr>
+                    <td>Pembayaran Utilitas</td>
+                    <td class="negative">(600,000,000)</td>
+                </tr>
+                <tr>
+                    <td>Pembayaran Pajak Penghasilan</td>
+                    <td class="negative">(2,212,500,000)</td>
+                </tr>
+                <tr class="total">
+                    <td>Arus Kas Bersih dari Aktivitas Operasi</td>
+                    <td>2,487,500,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Arus Kas dari Aktivitas Investasi</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Pembelian Aset Tetap</td>
+                    <td class="negative">(1,500,000,000)</td>
+                </tr>
+                <tr>
+                    <td>Penjualan Aset Tak Berwujud</td>
+                    <td>300,000,000</td>
+                </tr>
+                <tr class="total">
+                    <td>Arus Kas Bersih dari Aktivitas Investasi</td>
+                    <td class="negative">(1,200,000,000)</td>
+                </tr>
+                <tr>
+                    <td><strong>Arus Kas dari Aktivitas Pendanaan</strong></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Penerimaan dari Pinjaman Bank</td>
+                    <td>2,000,000,000</td>
+                </tr>
+                <tr>
+                    <td>Pembayaran Dividen</td>
+                    <td class="negative">(1,000,000,000)</td>
+                </tr>
+                <tr>
+                    <td>Pembayaran Bunga Pinjaman</td>
+                    <td class="negative">(500,000,000)</td>
+                </tr>
+                <tr class="total">
+                    <td>Arus Kas Bersih dari Aktivitas Pendanaan</td>
+                    <td>500,000,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Kenaikan Bersih Kas dan Setara Kas</strong></td>
+                    <td>1,787,500,000</td>
+                </tr>
+                <tr>
+                    <td>Kas dan Setara Kas Awal Tahun</td>
+                    <td>3,212,500,000</td>
+                </tr>
+                <tr class="total">
+                    <td><strong>Kas dan Setara Kas Akhir Tahun</strong></td>
+                    <td>5,000,000,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function openTab(tabName) {
+            // Hide all tab contents
+            var tabContents = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove("active");
+            }
+
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-button");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+
+            // Show the selected tab content and set the button as active
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
